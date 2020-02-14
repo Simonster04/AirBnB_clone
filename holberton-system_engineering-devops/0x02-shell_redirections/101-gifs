@@ -1,2 +1,0 @@
-#!/bin/bash
-export LC_ALL=C NAME="*.gif" | sort .

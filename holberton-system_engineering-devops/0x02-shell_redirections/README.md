@@ -1,1 +1,0 @@
-Tips for I/O in the shell
