@@ -13,8 +13,8 @@ class BaseModel():
         if len(kwargs) > 0:
             for key, val in kwargs.items():
                 if key != '__class__':
-                    if key == 'created_at' or key == 'updated_at':
-                        setattr(self, key, val.strftime("%Y-%m-%dT%H:%M:%S.%f"))
+                    if key == "created_at" or key == "updated_at":
+                        setattr(self, key, datetime.strptime(val, "%Y-%m-%dT%H:%M:%S.%f"))
                     else:
                         setattr(self, key, val)
         else:
@@ -36,7 +36,7 @@ class BaseModel():
         """ returns a dictionary containing all keys/values of __dict__ of the instance """
         aux = self.__dict__.copy()
         for key, val in aux.items():
-            if key == 'created_at' or key == 'updated_at':
+            if key == "created_at" or key == "updated_at":
                 aux[key] = val.isoformat()
             else:
                 aux[key] = val
