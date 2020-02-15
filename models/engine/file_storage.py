@@ -4,6 +4,8 @@
 """
 import json
 from models.base_model import BaseModel
+import models
+import os.path as path
 
 class FileStorage():
     """
@@ -27,15 +29,16 @@ class FileStorage():
         for key in self.__objects:
             dict[key] = self.__objects[key].to_dict()
         with open(self.__file_path, 'w', encoding='UTF8') as file:
-            json.dump(dict, file)
+            file.write(json.dumps(dict))
+
 
     def reload(self):
         """Deserializes the JSON file to __objects (only if the JSON file (__file_path)"""
-        try:
+        if (path.isfile(self.__file_path)):
             with open(self.__file_path, 'r', encoding='UTF8') as file:
-                txt = json.loads(file.read())
-                for key, val in txt.items():
-                    obj = BaseModel(val)
+                txt = file.read()
+            if (len(txt) > 0):
+                dic = json.loads(txt)
+                for key, val in dic.items():
+                    obj = BaseModel(**val)
                     self.__objects[key] = obj
-        except:
-            pass
