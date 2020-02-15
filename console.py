@@ -5,9 +5,14 @@
 
 import cmd
 import shlex
+from models.base_model import BaseModel
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """ contains the entry point of the command interpreter """
+
+    classes_str = ['BaseModel']
+    classes = [BaseModel()]
 
     prompt = "(hbnb) "
 
@@ -27,10 +32,20 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, inp):
         """Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id"""
+
         args = shlex.split(inp)
         if len(args) == 0:
             print("** class name missing **")
             return False
+        aux = 0
+        for cont in range(len(self.classes_str)):
+            if args[0] == self.classes_str[cont]:
+                obj = self.classes[cont]
+                obj.save()
+                print(obj.id)
+                aux = 1
+        if aux == 0:
+            print("** class doesn't exist **")
 
 
     def do_show(self, inp):
@@ -40,6 +55,23 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return False
+        for cont in range(len(self.classes_str)):
+            if args[0] == self.classes_str[cont]:
+                if not len(args) > 1:
+                    print("** instance id missing **")
+                else:
+                    txt = storage.all()
+                    print(type(txt))
+                    for i in txt:
+                        if args[1] == txt[i]['id']:
+                            print(txt[i].BaseModel__str__)
+                        else:
+                            print("** no instance found **")
+
+            else:
+                print("** class doesn't exist **")
+
+
 
     def do_destroy(self, inp):
         """Deletes an instance based on the class name and id"""
