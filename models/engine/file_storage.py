@@ -7,6 +7,7 @@ from models.base_model import BaseModel
 import models
 import os.path as path
 
+
 class FileStorage():
     """
     Serializes instances to a JSON file and deserializes JSON file to instances
