@@ -57,17 +57,15 @@ class HBNBCommand(cmd.Cmd):
             return False
         for cont in range(len(self.classes_str)):
             if args[0] == self.classes_str[cont]:
-                if not len(args) > 1:
-                    print("** instance id missing **")
-                else:
+                if len(args) > 1:
                     txt = storage.all()
-                    print(type(txt))
-                    for i in txt:
-                        if args[1] == txt[i]['id']:
-                            print(txt[i].BaseModel__str__)
-                        else:
-                            print("** no instance found **")
-
+                    obj = args[0] + "." + args[1]
+                    if obj in txt:
+                        print(txt[obj])
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
 
