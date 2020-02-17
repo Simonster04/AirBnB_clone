@@ -77,12 +77,42 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return False
+        for cont in range(len(self.classes_str)):
+            if args[0] == self.classes_str[cont]:
+                if len(args) > 1:
+                    txt = storage.all()
+                    obj = args[0] + "." + args[1]
+                    if obj in txt:
+                        obj[txt].pop()
+                        storage.save()
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
 
 
-    def do_all(self):
+    def do_all(self, inp):
         """Prints all string representation of all instances
         based or not on the class name"""
-
+        args = shlex.split(inp)
+        string = ""
+        list = []
+        for cont in range(len(self.classes_str)):
+            if args[0] != self.classes_str[cont]:
+                print("** class doesn't exist **")
+            elif inp == "":
+                for key, val in storage.all().items():
+                    string = str(val)
+                    list.append(string)
+                print(list)
+            else:
+                for key, val in storage.all().items():
+                    if val.__class__.__name__ == args[0]:
+                        string = str(val)
+                        list.append(val)
+                print(list)
 
 
     def do_update(self, inp):
@@ -93,7 +123,6 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return False
-
 
 
 if __name__ == '__main__':
