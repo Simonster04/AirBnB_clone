@@ -126,7 +126,28 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(inp)
         if len(args) == 0:
             print("** class name missing **")
-            return False
+            return
+        for cont in range(len(self.classes_str)):
+            if args[0] != self.classes_str[cont]:
+                print("** class doesn't exist **")
+                return
+            elif len(args) < 2:
+                print("** instance id missing **")
+                return
+            elif args[0] + '.' + args[1] not in \
+                    storage.all().keys():
+                print("** no instance found **")
+                return
+            elif len(args) < 3:
+                print("** attribute name missing **")
+                return
+            elif len(args) < 4:
+                print("** value missing **")
+                return
+            else:
+                obj = storage.all().get(args[0] + '.' + args[1])
+                setattr(obj, args[2], args[3][1:-1])
+                obj.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
