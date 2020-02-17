@@ -7,13 +7,21 @@ import cmd
 import shlex
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """ contains the entry point of the command interpreter """
 
-    classes_str = ['BaseModel']
-    classes = [BaseModel()]
+    classes_str = ['BaseModel', 'User', 'State', 'City',
+                   'Amenity', 'Place', 'Review']
+    classes = [BaseModel(), User(), State(), City(), Amenity(),
+               Place(), Review()]
 
     prompt = "(hbnb) "
 

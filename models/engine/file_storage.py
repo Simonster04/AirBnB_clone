@@ -2,10 +2,20 @@
 """
  Containts the FileStorage Class
 """
+
 import json
 from models.base_model import BaseModel
-import models
 import os.path as path
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+
+classes = [BaseModel, User, State, City, Amenity,
+           Place, Review]
 
 
 class FileStorage():
@@ -34,12 +44,12 @@ class FileStorage():
 
     def reload(self):
         """Deserializes the JSON file to __objects
-        (only if the JSON file (__file_path)"""
-        if (path.isfile(self.__file_path)):
+        (only if the JSON file (__file_path))"""
+        if path.isfile(self.__file_path):
             with open(self.__file_path, 'r', encoding='UTF8') as file:
                 txt = file.read()
-            if (len(txt) > 0):
+            if len(txt) > 0:
                 dic = json.loads(txt)
                 for key, val in dic.items():
-                    obj = BaseModel(**val)
+                    obj = classes[val["__class__"]](**val)
                     self.__objects[key] = obj
