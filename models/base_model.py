@@ -6,6 +6,7 @@ import models
 import uuid
 from datetime import datetime
 
+
 class BaseModel():
     """ defines all common attributes/methods for other classes """
 
@@ -14,7 +15,8 @@ class BaseModel():
             for key, val in kwargs.items():
                 if key != '__class__':
                     if key == "created_at" or key == "updated_at":
-                        setattr(self, key, datetime.strptime(val, "%Y-%m-%dT%H:%M:%S.%f"))
+                        timeform = "%Y-%m-%dT%H:%M:%S.%f"
+                        setattr(self, key, datetime.strptime(val, timeform))
                     else:
                         setattr(self, key, val)
         else:
@@ -25,15 +27,18 @@ class BaseModel():
 
     def __str__(self):
         """ prints as string """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        classname = self.__class__.__name__
+        return "[{}] ({}) {}".format(classname, self.id, self.__dict__)
 
     def save(self):
-        """ updates the public instance attribute updated_at with the current datetime """
+        """ updates the public instance attribute updated_at
+        with the current datetime """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """ returns a dictionary containing all keys/values of __dict__ of the instance """
+        """ returns a dictionary containing all keys/values of
+        __dict__ of the instance """
         aux = self.__dict__.copy()
         for key, val in aux.items():
             if key == "created_at" or key == "updated_at":

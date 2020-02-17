@@ -8,6 +8,7 @@ import shlex
 from models.base_model import BaseModel
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """ contains the entry point of the command interpreter """
 
@@ -47,7 +48,6 @@ class HBNBCommand(cmd.Cmd):
         if aux == 0:
             print("** class doesn't exist **")
 
-
     def do_show(self, inp):
         """Prints the string representation of an instance
         based on the class name and id"""
@@ -68,8 +68,6 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
-
-
 
     def do_destroy(self, inp):
         """Deletes an instance based on the class name and id"""
@@ -92,7 +90,6 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-
     def do_all(self, inp):
         """Prints all string representation of all instances
         based or not on the class name"""
@@ -114,7 +111,6 @@ class HBNBCommand(cmd.Cmd):
                         list.append(val)
                 print(list)
 
-
     def do_update(self, inp):
         """Updates an instance based on the class name and id
         by adding or updating attribute (save the change into
@@ -123,7 +119,6 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return False
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

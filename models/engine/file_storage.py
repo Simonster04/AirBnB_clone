@@ -32,9 +32,9 @@ class FileStorage():
         with open(self.__file_path, 'w', encoding='UTF8') as file:
             file.write(json.dumps(dict))
 
-
     def reload(self):
-        """Deserializes the JSON file to __objects (only if the JSON file (__file_path)"""
+        """Deserializes the JSON file to __objects
+        (only if the JSON file (__file_path)"""
         if (path.isfile(self.__file_path)):
             with open(self.__file_path, 'r', encoding='UTF8') as file:
                 txt = file.read()
