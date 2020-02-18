@@ -4,6 +4,7 @@
 """
 
 import json
+import gc
 from models.base_model import BaseModel
 import os.path as path
 from models.user import User
