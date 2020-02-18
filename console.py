@@ -64,22 +64,23 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return False
-        for cont in range(len(self.classes_str)):
+        for cont in range(len(self.classes_str) - 1):
             if args[0] == self.classes_str[cont]:
                 if len(args) > 1:
                     txt = storage.all()
                     obj = args[0] + "." + args[1]
                     if obj in txt:
                         print(txt[obj])
+                        return False
                     else:
                         print("** no instance found **")
-                        return
+                        return False
                 else:
                     print("** instance id missing **")
-                    return
+                    return False
             else:
                 print("** class doesn't exist **")
-                return
+                return False
 
     def do_destroy(self, inp):
         """Deletes an instance based on the class name and id"""
@@ -93,34 +94,39 @@ class HBNBCommand(cmd.Cmd):
                     txt = storage.all()
                     obj = args[0] + "." + args[1]
                     if obj in txt:
-                        storage.all().pop(txt)
+                        storage.all().pop(obj)
                         storage.save()
+                        return False
                     else:
                         print("** no instance found **")
-                        return
+                        return False
                 else:
                     print("** instance id missing **")
-                    return
+                    return False
             else:
                 print("** class doesn't exist **")
-                return
+                return False
 
     def do_all(self, inp):
         """Prints all string representation of all instances
         based or not on the class name"""
         args = shlex.split(inp)
         n_list = []
-        for cont in range(len(self.classes_str)):
+        for cont in range(len(self.classes_str) - 1):
+            if len(args) == 0:
+                for key, val in storage.all().items():
+                    n_list.append(val.__str__())
+                print(n_list)
+                return False
             if args[0] != self.classes_str[cont]:
                 print("** class doesn't exist **")
-                return
-            elif len(args) == 0:
-                n_list = storage.all()
+                return False
             else:
                 for key, val in storage.all().items():
                     if val.__class__.__name__ == args[0]:
-                        n_list.append(val)
+                        n_list.append(val.__str__())
                 print(n_list)
+                return False
 
     def do_update(self, inp):
         """Updates an instance based on the class name and id
@@ -129,28 +135,29 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(inp)
         if len(args) == 0:
             print("** class name missing **")
-            return
+            return False
         for cont in range(len(self.classes_str)):
             if args[0] != self.classes_str[cont]:
                 print("** class doesn't exist **")
-                return
+                return False
             elif len(args) < 2:
                 print("** instance id missing **")
-                return
+                return False
             elif args[0] + '.' + args[1] not in \
                     storage.all().keys():
                 print("** no instance found **")
-                return
+                return False
             elif len(args) < 3:
                 print("** attribute name missing **")
-                return
+                return False
             elif len(args) < 4:
                 print("** value missing **")
-                return
+                return False
             else:
                 obj = storage.all().get(args[0] + '.' + args[1])
-                setattr(obj, args[2], args[3])
+                setattr(obj, args[2], "{}".format(args[3]))
                 obj.save()
+                return
 
 
 if __name__ == '__main__':
