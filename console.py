@@ -53,9 +53,10 @@ class HBNBCommand(cmd.Cmd):
                 obj.save()
                 print(obj.id)
                 aux = 1
+                return False
         if aux == 0:
             print("** class doesn't exist **")
-            return
+            return False
 
     def do_show(self, inp):
         """Prints the string representation of an instance
