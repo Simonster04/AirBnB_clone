@@ -55,6 +55,7 @@ class HBNBCommand(cmd.Cmd):
                 aux = 1
         if aux == 0:
             print("** class doesn't exist **")
+            return
 
     def do_show(self, inp):
         """Prints the string representation of an instance
@@ -72,10 +73,13 @@ class HBNBCommand(cmd.Cmd):
                         print(txt[obj])
                     else:
                         print("** no instance found **")
+                        return
                 else:
                     print("** instance id missing **")
+                    return
             else:
                 print("** class doesn't exist **")
+                return
 
     def do_destroy(self, inp):
         """Deletes an instance based on the class name and id"""
@@ -89,35 +93,34 @@ class HBNBCommand(cmd.Cmd):
                     txt = storage.all()
                     obj = args[0] + "." + args[1]
                     if obj in txt:
-                        obj[txt].pop()
+                        storage.all().pop(txt)
                         storage.save()
                     else:
                         print("** no instance found **")
+                        return
                 else:
                     print("** instance id missing **")
+                    return
             else:
                 print("** class doesn't exist **")
+                return
 
     def do_all(self, inp):
         """Prints all string representation of all instances
         based or not on the class name"""
         args = shlex.split(inp)
-        string = ""
-        list = []
+        n_list = []
         for cont in range(len(self.classes_str)):
             if args[0] != self.classes_str[cont]:
                 print("** class doesn't exist **")
-            elif inp == "":
-                for key, val in storage.all().items():
-                    string = str(val)
-                    list.append(string)
-                print(list)
+                return
+            elif len(args) == 0:
+                n_list = storage.all()
             else:
                 for key, val in storage.all().items():
                     if val.__class__.__name__ == args[0]:
-                        string = str(val)
-                        list.append(val)
-                print(list)
+                        n_list.append(val)
+                print(n_list)
 
     def do_update(self, inp):
         """Updates an instance based on the class name and id
@@ -146,7 +149,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             else:
                 obj = storage.all().get(args[0] + '.' + args[1])
-                setattr(obj, args[2], args[3][1:-1])
+                setattr(obj, args[2], args[3])
                 obj.save()
 
 if __name__ == '__main__':
