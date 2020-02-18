@@ -64,6 +64,9 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return False
+        if not args[0] in self.classes_str:
+            print("** class doesn't exist **")
+            return False
         for cont in range(len(self.classes_str) - 1):
             if args[0] == self.classes_str[cont]:
                 if len(args) > 1:
@@ -78,15 +81,15 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** instance id missing **")
                     return False
-            else:
-                print("** class doesn't exist **")
-                return False
 
     def do_destroy(self, inp):
         """Deletes an instance based on the class name and id"""
         args = shlex.split(inp)
         if len(args) == 0:
             print("** class name missing **")
+            return False
+        if not args[0] in self.classes_str:
+            print("** class doesn't exist **")
             return False
         for cont in range(len(self.classes_str)):
             if args[0] == self.classes_str[cont]:
@@ -103,30 +106,26 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** instance id missing **")
                     return False
-            else:
-                print("** class doesn't exist **")
-                return False
 
     def do_all(self, inp):
         """Prints all string representation of all instances
         based or not on the class name"""
         args = shlex.split(inp)
         n_list = []
+        if len(args) == 0:
+            for key, val in storage.all().items():
+                n_list.append(val.__str__())
+            print(n_list)
+            return False
+        if not args[0] in self.classes_str:
+            print("** class doesn't exist **")
+            return False
         for cont in range(len(self.classes_str) - 1):
-            if len(args) == 0:
-                for key, val in storage.all().items():
+            for key, val in storage.all().items():
+                if val.__class__.__name__ == args[0]:
                     n_list.append(val.__str__())
-                print(n_list)
-                return False
-            if args[0] != self.classes_str[cont]:
-                print("** class doesn't exist **")
-                return False
-            else:
-                for key, val in storage.all().items():
-                    if val.__class__.__name__ == args[0]:
-                        n_list.append(val.__str__())
-                print(n_list)
-                return False
+            print(n_list)
+            return False
 
     def do_update(self, inp):
         """Updates an instance based on the class name and id
@@ -137,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         for cont in range(len(self.classes_str)):
-            if args[0] != self.classes_str[cont]:
+            if not args[0] in self.classes_str:
                 print("** class doesn't exist **")
                 return False
             elif len(args) < 2:
