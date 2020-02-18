@@ -47,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         aux = 0
-        for cont in range(len(self.classes_str)):
+        for cont in range(len(self.classes_str) - 1):
             if args[0] == self.classes_str[cont]:
                 obj = self.classes[cont]
                 obj.save()
@@ -91,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
         if not args[0] in self.classes_str:
             print("** class doesn't exist **")
             return False
-        for cont in range(len(self.classes_str)):
+        for cont in range(len(self.classes_str) - 1):
             if args[0] == self.classes_str[cont]:
                 if len(args) > 1:
                     txt = storage.all()
@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return False
-        for cont in range(len(self.classes_str)):
+        for cont in range(len(self.classes_str) - 1):
             if not args[0] in self.classes_str:
                 print("** class doesn't exist **")
                 return False
