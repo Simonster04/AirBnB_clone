@@ -80,7 +80,7 @@ Process finished with exit code 0
 
 ## Authors
 
-Camilo Isaza [Twitter](https://twitter.com/andresmelek/) 
-Simón Parra [Twitter](https://twitter.com/Simonster04/)
+- Camilo Isaza [Twitter](https://twitter.com/andresmelek/) 
+- Simón Parra [Twitter](https://twitter.com/Simonster04/)
 
 ENJOY IT PAPU! :bowtie:  :bowtie:  :bowtie:
