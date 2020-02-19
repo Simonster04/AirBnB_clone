@@ -205,14 +205,6 @@ class TestBaseModel(unittest.TestCase):
         comparing = obj.to_dict()
         self.assertDictEqual(new_dict, comparing)
 
-    def test_checking_for_docstring_BaseModel(self):
-        """checking for docstrings"""
-        self.assertIsNotNone(BaseModel.__doc__)
-        self.assertIsNotNone(BaseModel.__init__.__doc__)
-        self.assertIsNotNone(BaseModel.__str__.__doc__)
-        self.assertIsNotNone(BaseModel.save.__doc__)
-        self.assertIsNotNone(BaseModel.to_dict.__doc__)
-
     def test_method_BaseModel(self):
         """checking if Basemodel have methods"""
         self.assertTrue(hasattr(BaseModel, "__init__"))

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Test Review"""
+"""Test State"""
 import unittest
 import pep8
 from models.base_model import BaseModel
@@ -11,32 +11,26 @@ from models.review import Review
 from models.user import User
 
 
-class Testreview(unittest.TestCase):
-    def test_pep8_conformance_review(self):
+class Teststate(unittest.TestCase):
+    def test_pep8_conformance_state(self):
         """Test that we conform to PEP8."""
         pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/review.py'])
+        result = pep8style.check_files(['models/state.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
     def test_class(self):
-        rev1 = Review()
-        self.assertEqual(rev1.__class__.__name__, "Review")
+        state1 = State()
+        self.assertEqual(state1.__class__.__name__, "State")
 
     def test_father(self):
-        rev1 = Review()
-        self.assertTrue(issubclass(rev1.__class__, BaseModel))
+        state1 = State()
+        self.assertEqual(state1.__class__.__name__, "State")
 
-    def test_review(self):
+    def test_state(self):
         """
-        Test review
+        Test attributes of Class State
         """
-        my_place = Place()
-        my_user = User()
-        my_review = Review()
-        my_review.place_id = my_place.id
-        my_review.user_id = my_user.id
-        my_review.text = 'holberton'
-        self.assertEqual(my_review.place_id, my_place.id)
-        self.assertEqual(my_review.user_id, my_user.id)
-        self.assertEqual(my_review.text, 'holberton')
+        my_state = State()
+        my_state.name = "Antioquia"
+        self.assertEqual(my_state.name, 'Antioquia')
