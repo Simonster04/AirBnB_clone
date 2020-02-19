@@ -9,11 +9,11 @@ This is the step 1/4 towards building a full web application: an AirBnB clone. T
 
 This command interpreter is limited to a specific use-case. We want to be able to manage the objects of our project:
 
-markup: * Create a new object (ex: a new User or a new Place)
-	* Retrieve an object from a file, a database etc…
-	* Do operations on objects (count, compute stats, etc…)
-	* Update attributes of an object
-	* Destroy an object
+- Create a new object (ex: a new User or a new Place)
+- Retrieve an object from a file, a database etc…
+- Do operations on objects (count, compute stats, etc…)
+- Update attributes of an object
+- Destroy an object
 
 
 ## How to start it
@@ -36,27 +36,27 @@ where `(hbnb)` is the prompt of the line interpreter
 
 ## Types of classes to manipulate
 
-markup: * BaseModel
-	* User
-	* State
-	* City
-	* Amenity
-	* Place
-	* Review
+- BaseModel
+- User
+- State
+- City
+- Amenity
+- Place
+- Review
 
 
 ## Commands enabled
 
-markup: * __create__: Creates a new instance and saves it (to a JSON file).
-	* __show__: Prints the string representation of an instance based on the class name and id.
-	* __destroy__: Deletes an instance based on the class name and id (save the change into the JSON file).
-	* __all__: Prints all string representation of all instances based or not on the class name.
-	* __update__: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
-	* __quit__: Exit the program
+- __create__: Creates a new instance and saves it (to a JSON file).
+- __show__: Prints the string representation of an instance based on the class name and id.
+- __destroy__: Deletes an instance based on the class name and id (save the change into the JSON file).
+- __all__: Prints all string representation of all instances based or not on the class name.
+- __update__: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
+- __quit__: Exit the program
 
 ## Examples
 
-```
+```python
 (hbnb) create USer
 ** class doesn't exist **
 (hbnb) create User
