@@ -208,6 +208,7 @@ class TestBaseModel(unittest.TestCase):
     def test_checking_for_docstring_BaseModel(self):
         """checking for docstrings"""
         self.assertIsNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(BaseModel.__init__.__doc__)
         self.assertIsNotNone(BaseModel.__str__.__doc__)
         self.assertIsNotNone(BaseModel.save.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
@@ -233,66 +234,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.base.__class__.__name__, 'BaseModel')
         self.assertIsInstance(base_dict['created_at'], str)
         self.assertIsInstance(base_dict['updated_at'], str)
-
-    def test_class(self):
-        """ Tests instance of a class """
-        base = BaseModel()
-        self.assertTrue(isinstance(base, BaseModel))
-
-    def test_id(self):
-        """ Tests that ids are unique """
-        base1 = BaseModel()
-        base2 = BaseModel()
-        self.assertTrue(base1.id != base2.id)
-
-    def test_kwargs(self):
-        """ Tests instanciation with kwargs"""
-        base = BaseModel()
-        base.name = "Dani"
-        dicty = base.to_dict()
-        self.assertTrue("name" in dicty)
-
-    def test_to_dict(self):
-        """ Tests that the function retrieves a dictionary """
-        base = BaseModel()
-        ret_dict = base.to_dict()
-        self.assertTrue(isinstance(ret_dict, dict))
-
-    def test_str(self):
-        """ Tests the str repr. of an object """
-        base = BaseModel()
-        base_str = base.__str__()
-        self.assertTrue(isinstance(base_str, str))
-
-    def test_class(self):
-        """ Tests instance of a class """
-        base = BaseModel()
-        self.assertTrue(isinstance(base, BaseModel))
-
-    def test_id(self):
-        """ Tests that ids are unique """
-        base1 = BaseModel()
-        base2 = BaseModel()
-        self.assertTrue(base1.id != base2.id)
-
-    def test_kwargs(self):
-        """ Tests instanciation with kwargs"""
-        base = BaseModel()
-        base.name = "Dani"
-        dicty = base.to_dict()
-        self.assertTrue("name" in dicty)
-
-    def test_to_dict(self):
-        """ Tests that the function retrieves a dictionary """
-        base = BaseModel()
-        ret_dict = base.to_dict()
-        self.assertTrue(isinstance(ret_dict, dict))
-
-    def test_str(self):
-        """ Tests the str repr. of an object """
-        base = BaseModel()
-        base_str = base.__str__()
-        self.assertTrue(isinstance(base_str, str))
 
 
 if __name__ == "__main__":
