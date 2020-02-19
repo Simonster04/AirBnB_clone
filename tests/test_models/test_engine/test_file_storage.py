@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""test for file storage"""
+"""
+ test for file storage
+"""
+
 import unittest
 import pep8
 import json
@@ -15,7 +18,7 @@ from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
-    '''this will test the FileStorage'''
+    """this will test the FileStorage"""
 
     @classmethod
     def setUpClass(cls):
