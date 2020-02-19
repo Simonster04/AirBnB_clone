@@ -11,6 +11,7 @@ class BaseModel():
     """ defines all common attributes/methods for other classes """
 
     def __init__(self, *args, **kwargs):
+        """ initializing attributes """
         if len(kwargs) > 0:
             for key, val in kwargs.items():
                 if key != '__class__':
