@@ -144,7 +144,3 @@ class TestFileStorage(unittest.TestCase):
             dic = json.loads(fjson.read())
         bm_key = bm.__class__.__name__ + '.' + bm.id
         self.assertDictEqual(bm.to_dict(), dic[bm_key])
-
-
-if __name__ == "__main__":
-    unittest.main()
