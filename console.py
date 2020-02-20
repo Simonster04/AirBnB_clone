@@ -38,9 +38,11 @@ class HBNBCommand(cmd.Cmd):
                     elif args[1] == 'count()':
                         cont = 0
                         for key, val in storage.all().items():
-                            cont += 1
-                            print(cont)
-                            return False
+                            classe = key.split('.')
+                            if args[0] == classe[0]:
+                                cont += 1
+                                print(cont)
+                                return False
 
     def do_quit(self, inp):
         """Quit command to exit the program
