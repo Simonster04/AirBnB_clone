@@ -48,6 +48,16 @@ class HBNBCommand(cmd.Cmd):
                         line = args[0] + ' ' + id
                         self.do_show(line)
                         return False
+                    elif args[1][0:8] == 'destroy(':
+                        id = args[1][8:-1]
+                        line = args[0] + ' ' + id
+                        self.do_destroy(line)
+                        return False
+                    elif args[1][0:7] == 'update(':
+                        argus = args[1][7:-1].split(', ')
+                        line = args[0] + ' ' + argus[0] + ' ' + argus[1] + ' ' + argus[2]
+                        self.do_destroy(line)
+                        return False
 
     def do_quit(self, inp):
         """Quit command to exit the program
