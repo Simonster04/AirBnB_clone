@@ -25,6 +25,17 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    def default(self, inp):
+        """ Method called to complete an input line when no command-specific
+        complete_*() method is available """
+        args = inp.split('.')
+        for cont in range(len(self.classes_str)):
+            for key in self.classes_str:
+                if key == args[0]:
+                    if args[1] == 'all()':
+                        self.do_all(args[0])
+                        return False
+
     def do_quit(self, inp):
         """Quit command to exit the program
         """
