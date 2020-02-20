@@ -35,6 +35,12 @@ class HBNBCommand(cmd.Cmd):
                     if args[1] == 'all()':
                         self.do_all(args[0])
                         return False
+                    elif args[1] == 'count()':
+                        cont = 0
+                        for key, val in storage.all().items():
+                            cont += 1
+                            print(cont)
+                            return False
 
     def do_quit(self, inp):
         """Quit command to exit the program
