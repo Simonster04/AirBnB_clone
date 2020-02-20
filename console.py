@@ -55,7 +55,10 @@ class HBNBCommand(cmd.Cmd):
                         return False
                     elif args[1][0:7] == 'update(':
                         argus = args[1][7:-1].split(', ')
-                        line = args[0] + ' ' + argus[0] + ' ' + argus[1] + ' ' + argus[2]
+                        new_value = "{}".format(argus[2])
+                        id = argus[0]
+                        att = argus[1]
+                        line = args[0] + ' ' + id + ' ' + att + ' ' + new_value
                         self.do_destroy(line)
                         return False
 
