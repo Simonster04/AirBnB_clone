@@ -43,6 +43,11 @@ class HBNBCommand(cmd.Cmd):
                                 cont += 1
                                 print(cont)
                                 return False
+                    elif args[1][0:5] == 'show(':
+                        id = args[1][5:-1]
+                        line = args[0] + ' ' + id
+                        self.do_show(line)
+                        return False
 
     def do_quit(self, inp):
         """Quit command to exit the program
