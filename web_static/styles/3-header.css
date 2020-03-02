@@ -8,4 +8,5 @@ header {
 .logo {
     padding-left: 20px;
     vertical-align: middle;
+    content: url(../images/logo.png);
 }
